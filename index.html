@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blackjack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Blackjack</h1>
+    <p class="subtitle">Try to beat the dealer without busting!</p>
+  </header>
+
+  <main class="table" role="main">
+    <section class="status" aria-live="polite">
+      <div class="hand-info">
+        <h2>Dealer</h2>
+        <div class="cards" id="dealer-cards" aria-label="Dealer cards"></div>
+        <p class="score" id="dealer-score">Score: 0</p>
+      </div>
+      <div class="hand-info">
+        <h2>You</h2>
+        <div class="cards" id="player-cards" aria-label="Player cards"></div>
+        <p class="score" id="player-score">Score: 0</p>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button id="deal" class="primary">Deal</button>
+      <button id="hit" disabled>Hit</button>
+      <button id="stand" disabled>Stand</button>
+      <button id="reset">Reset</button>
+    </section>
+
+    <section class="message" id="message" aria-live="polite"></section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Blackjack rules: Aces are worth 1 or 11. Dealer stands on 17.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
