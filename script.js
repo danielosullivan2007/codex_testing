@@ -89,20 +89,46 @@ const calculateScore = (hand) => {
 const renderCard = (card, options = {}) => {
   const cardEl = document.createElement('div');
   cardEl.className = 'card';
+
   if (options.hidden) {
     cardEl.classList.add('hidden');
     cardEl.dataset.hidden = 'true';
-  } else {
-    if (card.suit === '♥' || card.suit === '♦') {
-      cardEl.classList.add('red');
-    }
-    const top = document.createElement('span');
-    top.textContent = `${card.label}${card.suit}`;
-    const bottom = document.createElement('span');
-    bottom.textContent = `${card.label}${card.suit}`;
-    cardEl.appendChild(top);
-    cardEl.appendChild(bottom);
+    return cardEl;
   }
+
+  const isRedSuit = card.suit === '♥' || card.suit === '♦';
+  if (isRedSuit) {
+    cardEl.classList.add('red');
+  }
+
+  const createCorner = (position) => {
+    const corner = document.createElement('div');
+    corner.className = `card-corner ${position}`;
+
+    const rank = document.createElement('span');
+    rank.className = 'card-rank';
+    rank.textContent = card.label;
+
+    const suit = document.createElement('span');
+    suit.className = 'card-suit';
+    suit.textContent = card.suit;
+
+    corner.append(rank, suit);
+    return corner;
+  };
+
+  const topCorner = createCorner('top');
+  const bottomCorner = createCorner('bottom');
+
+  const center = document.createElement('div');
+  center.className = 'card-center';
+  const centerSuit = document.createElement('span');
+  centerSuit.className = 'card-suit large';
+  centerSuit.textContent = card.suit;
+  center.appendChild(centerSuit);
+
+  cardEl.append(topCorner, center, bottomCorner);
+
   return cardEl;
 };
 
